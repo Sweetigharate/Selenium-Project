@@ -1,0 +1,1092 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f7f3ff;--card:#fff;--nav:#fff;--nb:#ede8fb;--text:#2d2540;--muted:#7b6f99;--faint:#c4b5fd;--acc:#9b7fe8;--mono:monospace;--sans:system-ui,sans-serif;--r8:8px;--r12:12px;--r16:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.65}
+nav{background:var(--nav);border-bottom:1.5px solid var(--nb);padding:0 1rem;position:sticky;top:0;z-index:50}
+.ni{display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;max-width:1100px;margin:0 auto}
+.ni::-webkit-scrollbar{display:none}
+.nl{font-size:12px;font-weight:700;color:var(--acc);white-space:nowrap;padding:10px 10px 10px 0;margin-right:6px;border-right:1.5px solid var(--nb);flex-shrink:0}
+.nb{background:none;border:none;border-bottom:2.5px solid transparent;color:var(--muted);font-family:var(--sans);font-size:10px;font-weight:700;padding:10px 8px;cursor:pointer;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase}
+.nb:hover{color:var(--text)}.nb.on{color:var(--acc);border-bottom-color:var(--acc)}
+.sec{display:none;max-width:1100px;margin:0 auto;padding:1.5rem 1rem 4rem}.sec.on{display:block}
+.hero{padding:2rem 0 0;text-align:center}
+.hero h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:700;margin-bottom:6px}
+.hero p{color:var(--muted);font-size:12px;max-width:500px;margin:0 auto 1.5rem}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;padding:0 0 2rem}
+.tc{background:#fff;border:1.5px solid var(--nb);border-radius:var(--r12);padding:1rem .8rem;cursor:pointer;text-align:center;transition:border-color .15s,transform .15s}
+.tc:hover{border-color:var(--acc);transform:translateY(-2px)}
+.tc .ic{font-size:16px;margin-bottom:4px}
+.tc h3{font-size:10px;font-weight:700;margin-bottom:2px}
+.tc p{font-size:9px;color:var(--muted)}
+.sh{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1.5px solid var(--nb)}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px;margin-bottom:7px;background:#ede8fb;color:var(--acc)}
+.sh h2{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;margin-bottom:4px}
+.sh p{color:var(--muted);font-size:12px}
+.lv{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin:1.5rem 0 .7rem}
+.lv-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.lv-s{color:#34a672}.lv-s .lv-dot{background:#34a672}
+.lv-m{color:#d97706}.lv-m .lv-dot{background:#d97706}
+.lv-p{color:#e05252}.lv-p .lv-dot{background:#e05252}
+.card{background:#fff;border:1.5px solid var(--nb);border-radius:var(--r16);padding:1.1rem;margin-bottom:9px}
+.card h4{font-size:12px;font-weight:700;margin-bottom:6px}
+.card p{font-size:11px;color:var(--muted);line-height:1.65;margin-bottom:6px}
+.card p:last-child{margin-bottom:0}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:9px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+pre{background:#f4f0ff;border:1.5px solid #ede8fb;border-radius:var(--r12);padding:.9rem;overflow-x:auto;font-family:var(--mono);font-size:11px;line-height:1.75;color:#3b2e6e;margin:7px 0}
+.cl{font-size:9px;color:var(--muted);margin-bottom:2px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.kw{color:#7c3aed}.fn{color:#0369a1}.str{color:#15803d}.cmt{color:#a8a0c8;font-style:italic}.num{color:#b45309}.cls{color:#be185d}.ann{color:#d97706}
+.tbl{overflow-x:auto;margin:7px 0}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:#f4f0ff;color:var(--acc);font-weight:700;text-align:left;padding:6px 9px;font-size:9px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1.5px solid var(--nb)}
+td{padding:6px 9px;border-bottom:1px solid #f0eafa;color:var(--muted)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#faf8ff;color:var(--text)}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:100px}
+.ti{background:#e0f2fe;color:#0369a1}.ts{background:#d1fae5;color:#065f46}
+.tw{background:#fef3c7;color:#92400e}.td{background:#fee2e2;color:#991b1b}
+.tp{background:#fce7f3;color:#9d174d}.tv{background:#ede8fb;color:#5b21b6}
+.flow{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:7px 0}
+.fs{background:#f4f0ff;border:1.5px solid #ede8fb;border-radius:var(--r8);padding:3px 9px;font-size:10px;font-weight:700;white-space:nowrap}
+.fa{color:var(--faint);font-size:10px}
+.tip{background:#ede8fb;border-left:3px solid var(--acc);border-radius:0 var(--r8) var(--r8) 0;padding:8px 11px;font-size:11px;color:var(--text);margin:9px 0;line-height:1.6}
+.warn{background:#fff7e6;border-left:3px solid #f59e0b;border-radius:0 var(--r8) var(--r8) 0;padding:8px 11px;font-size:11px;color:var(--text);margin:9px 0;line-height:1.6}
+.sr{display:flex;gap:9px;margin-bottom:7px;align-items:flex-start}
+.sn{background:var(--acc);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;margin-top:1px}
+.sb{flex:1}.sb strong{font-size:11px;color:var(--text)}.sb p{font-size:10px;color:var(--muted);margin-top:1px}
+.folder{background:#faf8ff;border:1.5px solid var(--nb);border-radius:var(--r12);padding:.9rem;font-family:var(--mono);font-size:11px;line-height:1.9;color:#3b2e6e;margin:7px 0;overflow-x:auto}
+.folder .dir{color:var(--acc);font-weight:700}.folder .fi{color:#0369a1}.folder .cm{color:#a8a0c8;font-style:italic}
+@media(max-width:500px){.g2{grid-template-columns:1fr}}
+</style>
+
+<nav>
+  <div class="ni">
+    <div class="nl">☕ Selenium+Java</div>
+    <button class="nb on" onclick="S('home',this)">Home</button>
+    <button class="nb" onclick="S('setup',this)">Setup</button>
+    <button class="nb" onclick="S('locators',this)">Locators</button>
+    <button class="nb" onclick="S('waits',this)">Waits</button>
+    <button class="nb" onclick="S('pom',this)">POM</button>
+    <button class="nb" onclick="S('e2e',this)">E2E Flow</button>
+    <button class="nb" onclick="S('advanced',this)">Advanced</button>
+    <button class="nb" onclick="S('testng',this)">TestNG</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="sec on">
+  <div class="hero">
+    <h1>Selenium with Java — Full Notes 🌸</h1>
+    <p>Setup → Locators → Waits → POM → Full E2E Ecommerce Flow → Advanced Topics → TestNG</p>
+  </div>
+  <div class="tgrid">
+    <div class="tc" onclick="G('setup')"><div class="ic">🚀</div><h3>Setup</h3><p>Maven, WebDriver, first test</p></div>
+    <div class="tc" onclick="G('locators')"><div class="ic">🔍</div><h3>Locators</h3><p>All 8 + XPath deep dive</p></div>
+    <div class="tc" onclick="G('waits')"><div class="ic">⏳</div><h3>Waits</h3><p>Implicit, Explicit, Fluent</p></div>
+    <div class="tc" onclick="G('pom')"><div class="ic">🗂️</div><h3>POM</h3><p>Full Java project structure</p></div>
+    <div class="tc" onclick="G('e2e')"><div class="ic">🛒</div><h3>E2E Flow</h3><p>Login→Search→Cart→Order</p></div>
+    <div class="tc" onclick="G('advanced')"><div class="ic">⚡</div><h3>Advanced</h3><p>Actions, JS, Frames, Alerts</p></div>
+    <div class="tc" onclick="G('testng')"><div class="ic">🧪</div><h3>TestNG</h3><p>Annotations, groups, reports</p></div>
+  </div>
+</div>
+
+<!-- SETUP -->
+<div id="setup" class="sec">
+  <div class="sh"><div class="badge">🚀 Setup</div><h2>Maven + WebDriver Setup</h2><p>pom.xml, ChromeDriver initialization, WebDriver commands.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>pom.xml Dependencies</div>
+  <div class="card">
+    <pre><span class="kw">&lt;dependencies&gt;</span>
+  <span class="cmt">&lt;!-- Selenium Java --&gt;</span>
+  <span class="kw">&lt;dependency&gt;</span>
+    <span class="fn">&lt;groupId&gt;</span>org.seleniumhq.selenium<span class="fn">&lt;/groupId&gt;</span>
+    <span class="fn">&lt;artifactId&gt;</span>selenium-java<span class="fn">&lt;/artifactId&gt;</span>
+    <span class="fn">&lt;version&gt;</span>4.18.1<span class="fn">&lt;/version&gt;</span>
+  <span class="kw">&lt;/dependency&gt;</span>
+  <span class="cmt">&lt;!-- TestNG --&gt;</span>
+  <span class="kw">&lt;dependency&gt;</span>
+    <span class="fn">&lt;groupId&gt;</span>org.testng<span class="fn">&lt;/groupId&gt;</span>
+    <span class="fn">&lt;artifactId&gt;</span>testng<span class="fn">&lt;/artifactId&gt;</span>
+    <span class="fn">&lt;version&gt;</span>7.9.0<span class="fn">&lt;/version&gt;</span>
+    <span class="fn">&lt;scope&gt;</span>test<span class="fn">&lt;/scope&gt;</span>
+  <span class="kw">&lt;/dependency&gt;</span>
+  <span class="cmt">&lt;!-- WebDriverManager: auto downloads ChromeDriver --&gt;</span>
+  <span class="kw">&lt;dependency&gt;</span>
+    <span class="fn">&lt;groupId&gt;</span>io.github.bonigarcia<span class="fn">&lt;/groupId&gt;</span>
+    <span class="fn">&lt;artifactId&gt;</span>webdrivermanager<span class="fn">&lt;/artifactId&gt;</span>
+    <span class="fn">&lt;version&gt;</span>5.7.0<span class="fn">&lt;/version&gt;</span>
+  <span class="kw">&lt;/dependency&gt;</span>
+  <span class="cmt">&lt;!-- ExtentReports for HTML reports --&gt;</span>
+  <span class="kw">&lt;dependency&gt;</span>
+    <span class="fn">&lt;groupId&gt;</span>com.aventstack<span class="fn">&lt;/groupId&gt;</span>
+    <span class="fn">&lt;artifactId&gt;</span>extentreports<span class="fn">&lt;/artifactId&gt;</span>
+    <span class="fn">&lt;version&gt;</span>5.1.1<span class="fn">&lt;/version&gt;</span>
+  <span class="kw">&lt;/dependency&gt;</span>
+<span class="kw">&lt;/dependencies&gt;</span></pre>
+  </div>
+  <div class="lv lv-s"><div class="lv-dot"></div>WebDriver Init</div>
+  <div class="card">
+    <pre><span class="kw">import</span> io.github.bonigarcia.wdm.WebDriverManager;
+<span class="kw">import</span> org.openqa.selenium.WebDriver;
+<span class="kw">import</span> org.openqa.selenium.chrome.ChromeDriver;
+<span class="kw">import</span> org.openqa.selenium.chrome.ChromeOptions;
+
+<span class="cmt">// Normal Chrome</span>
+WebDriverManager.<span class="fn">chromedriver</span>().<span class="fn">setup</span>();
+<span class="cls">WebDriver</span> driver = <span class="kw">new</span> <span class="cls">ChromeDriver</span>();
+
+<span class="cmt">// Headless (for CI/CD)</span>
+<span class="cls">ChromeOptions</span> opts = <span class="kw">new</span> <span class="cls">ChromeOptions</span>();
+opts.<span class="fn">addArguments</span>(<span class="str">"--headless"</span>, <span class="str">"--window-size=1920,1080"</span>, <span class="str">"--disable-gpu"</span>);
+<span class="cls">WebDriver</span> driver = <span class="kw">new</span> <span class="cls">ChromeDriver</span>(opts);
+
+<span class="cmt">// Incognito</span>
+opts.<span class="fn">addArguments</span>(<span class="str">"--incognito"</span>);
+
+<span class="cmt">// Common driver commands</span>
+driver.<span class="fn">get</span>(<span class="str">"https://www.jiomart.com"</span>);     <span class="cmt">// open URL</span>
+driver.<span class="fn">manage</span>().<span class="fn">window</span>().<span class="fn">maximize</span>();       <span class="cmt">// maximise</span>
+driver.<span class="fn">getTitle</span>();                          <span class="cmt">// page title</span>
+driver.<span class="fn">getCurrentUrl</span>();                     <span class="cmt">// current URL</span>
+driver.<span class="fn">navigate</span>().<span class="fn">back</span>();                   <span class="cmt">// browser back</span>
+driver.<span class="fn">navigate</span>().<span class="fn">refresh</span>();               <span class="cmt">// refresh</span>
+driver.<span class="fn">quit</span>();                               <span class="cmt">// close + end session</span></pre>
+  </div>
+  <div class="tip">Always call driver.quit() in a @AfterMethod or finally block — never skip it. Leaving Chrome processes open crashes CI pipelines and wastes memory.</div>
+</div>
+
+<!-- LOCATORS -->
+<div id="locators" class="sec">
+  <div class="sh"><div class="badge">🔍 Locators</div><h2>All Selenium Locators — Java</h2><p>All 8 strategies, XPath deep dive, CSS cheat sheet, and priority guide.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>All 8 Strategies</div>
+  <div class="card">
+    <pre><span class="cmt">// 1. ID — fastest, always first choice</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">id</span>(<span class="str">"search-bar"</span>));
+
+<span class="cmt">// 2. Name — great for form fields</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">name</span>(<span class="str">"mobileNumber"</span>));
+
+<span class="cmt">// 3. CSS Selector — fast, flexible</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">cssSelector</span>(<span class="str">"button[data-testid='add-to-cart']"</span>));
+
+<span class="cmt">// 4. XPath — when CSS not enough</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">xpath</span>(<span class="str">"//button[text()='Add to Cart']"</span>));
+
+<span class="cmt">// 5. Class Name</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">className</span>(<span class="str">"success-toast"</span>));
+
+<span class="cmt">// 6. Tag Name</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">tagName</span>(<span class="str">"h1"</span>));
+
+<span class="cmt">// 7. Link Text (exact)</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">linkText</span>(<span class="str">"View Cart"</span>));
+
+<span class="cmt">// 8. Partial Link Text</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">partialLinkText</span>(<span class="str">"View"</span>));
+
+<span class="cmt">// Find MULTIPLE elements → returns List</span>
+List&lt;WebElement&gt; cards =
+  driver.<span class="fn">findElements</span>(By.<span class="fn">cssSelector</span>(<span class="str">".product-card"</span>));
+<span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Count: "</span> + cards.<span class="fn">size</span>());</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>XPath — All Patterns</div>
+  <div class="card">
+    <pre><span class="cmt">// Relative (always use — not absolute)</span>
+<span class="str">//input[@id='search-bar']</span>
+<span class="str">//button[@type='submit']</span>
+<span class="str">//input[@placeholder='Enter mobile number']</span>
+
+<span class="cmt">// By text</span>
+<span class="str">//button[text()='Add to Cart']</span>
+<span class="str">//span[contains(text(),'₹')]</span>
+
+<span class="cmt">// Contains class</span>
+<span class="str">//div[contains(@class,'product-card')]</span>
+
+<span class="cmt">// Parent → child</span>
+<span class="str">//div[@class='cart-item']//button[@class='remove-btn']</span>
+
+<span class="cmt">// Following sibling</span>
+<span class="str">//label[text()='Mobile']/following-sibling::input</span>
+
+<span class="cmt">// Index (1-based!)</span>
+<span class="str">(//div[@class='product-card'])[1]</span>      <span class="cmt">// first</span>
+<span class="str">(//div[@class='product-card'])[last()]</span>  <span class="cmt">// last</span>
+
+<span class="cmt">// AND / OR</span>
+<span class="str">//input[@type='text' and @name='mobile']</span>
+<span class="str">//button[@id='ok' or @name='ok']</span>
+
+<span class="cmt">// Ancestor</span>
+<span class="str">//span[text()='Remove']//ancestor::div[@class='cart-row']</span></pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>CSS Selector Cheat Sheet</div>
+  <div class="card">
+    <pre><span class="str">#search-bar</span>                   <span class="cmt">// by ID</span>
+<span class="str">.product-card</span>                  <span class="cmt">// by class</span>
+<span class="str">input[type='text']</span>             <span class="cmt">// by attribute</span>
+<span class="str">input[placeholder*='mobile']</span>   <span class="cmt">// contains</span>
+<span class="str">input[placeholder^='Enter']</span>    <span class="cmt">// starts with</span>
+<span class="str">input[placeholder$='number']</span>   <span class="cmt">// ends with</span>
+<span class="str">div.cart-item > button.remove</span>  <span class="cmt">// direct child</span>
+<span class="str">.product-card:nth-child(1)</span>     <span class="cmt">// first</span>
+<span class="str">.product-card:last-child</span>       <span class="cmt">// last</span>
+<span class="str">button[data-testid='checkout']</span> <span class="cmt">// data attribute ⭐ best practice</span></pre>
+  </div>
+  <div class="card">
+    <h4>Locator Priority Guide</h4>
+    <div class="tbl"><table>
+      <thead><tr><th>Priority</th><th>Strategy</th><th>When</th><th>Speed</th></tr></thead>
+      <tbody>
+        <tr><td>1st</td><td>id</td><td>ID exists and is unique</td><td style="color:#065f46">Fastest</td></tr>
+        <tr><td>2nd</td><td>CSS / data-testid</td><td>Most UI elements</td><td style="color:#065f46">Fast</td></tr>
+        <tr><td>3rd</td><td>name</td><td>Form inputs</td><td style="color:#065f46">Fast</td></tr>
+        <tr><td>4th</td><td>XPath</td><td>Complex hierarchy, text match</td><td style="color:#d97706">Medium</td></tr>
+        <tr><td>Avoid</td><td>className</td><td>Multiple classes break it</td><td style="color:#991b1b">Fragile</td></tr>
+        <tr><td>Avoid</td><td>tagName</td><td>Too generic</td><td style="color:#991b1b">Fragile</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="tip">Ask devs to add data-testid="..." to key elements. Then use cssSelector("[data-testid='cart-btn']") — survives CSS redesigns and class renames completely.</div>
+</div>
+
+<!-- WAITS -->
+<div id="waits" class="sec">
+  <div class="sh"><div class="badge">⏳ Waits</div><h2>All 3 Types of Selenium Waits</h2><p>Implicit, Explicit, Fluent — when to use each, all ExpectedConditions, and a reusable wait utility.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>1. Implicit Wait</div>
+  <div class="card">
+    <h4>Global timeout — set once</h4>
+    <pre><span class="cmt">// Set globally — applies to ALL findElement calls</span>
+driver.<span class="fn">manage</span>().<span class="fn">timeouts</span>()
+      .<span class="fn">implicitlyWait</span>(<span class="cls">Duration</span>.<span class="fn">ofSeconds</span>(<span class="num">10</span>));</pre>
+    <div class="tags">
+      <span class="tag ts">Simple, one line</span>
+      <span class="tag td">Can mask real timing bugs</span>
+      <span class="tag td">Never mix with Explicit Wait</span>
+    </div>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>2. Explicit Wait — Always Use This</div>
+  <div class="card">
+    <h4>WebDriverWait + ExpectedConditions — all types</h4>
+    <pre><span class="cls">WebDriverWait</span> wait = <span class="kw">new</span> <span class="cls">WebDriverWait</span>(driver, <span class="cls">Duration</span>.<span class="fn">ofSeconds</span>(<span class="num">15</span>));
+
+<span class="cmt">// Clickable</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">elementToBeClickable</span>(By.<span class="fn">id</span>(<span class="str">"add-to-cart"</span>))).<span class="fn">click</span>();
+
+<span class="cmt">// Visible</span>
+<span class="cls">WebElement</span> toast = wait.<span class="fn">until</span>(
+  <span class="cls">ExpectedConditions</span>.<span class="fn">visibilityOfElementLocated</span>(By.<span class="fn">className</span>(<span class="str">"toast"</span>)));
+
+<span class="cmt">// Present in DOM (not necessarily visible)</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">presenceOfElementLocated</span>(By.<span class="fn">id</span>(<span class="str">"order-id"</span>)));
+
+<span class="cmt">// Invisible (wait for loader to disappear)</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">invisibilityOfElementLocated</span>(By.<span class="fn">id</span>(<span class="str">"spinner"</span>)));
+
+<span class="cmt">// URL contains</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">urlContains</span>(<span class="str">"checkout"</span>));
+
+<span class="cmt">// Exact text in element</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">textToBe</span>(By.<span class="fn">id</span>(<span class="str">"cart-count"</span>), <span class="str">"1"</span>));
+
+<span class="cmt">// Title contains</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">titleContains</span>(<span class="str">"JioMart"</span>));
+
+<span class="cmt">// Alert present</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">alertIsPresent</span>());
+
+<span class="cmt">// Number of elements</span>
+wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">numberOfElementsToBeMoreThan</span>(
+  By.<span class="fn">cssSelector</span>(<span class="str">".product-card"</span>), <span class="num">0</span>));</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>3. Fluent Wait — Most Powerful</div>
+  <div class="card">
+    <h4>Custom polling interval + ignore exceptions</h4>
+    <pre><span class="kw">import</span> org.openqa.selenium.support.ui.FluentWait;
+<span class="kw">import</span> org.openqa.selenium.NoSuchElementException;
+
+<span class="cls">FluentWait</span>&lt;<span class="cls">WebDriver</span>&gt; fluentWait = <span class="kw">new</span> <span class="cls">FluentWait</span>&lt;&gt;(driver)
+  .<span class="fn">withTimeout</span>(<span class="cls">Duration</span>.<span class="fn">ofSeconds</span>(<span class="num">20</span>))
+  .<span class="fn">pollingEvery</span>(<span class="cls">Duration</span>.<span class="fn">ofMillis</span>(<span class="num">500</span>))  <span class="cmt">// check every 0.5s</span>
+  .<span class="fn">ignoring</span>(<span class="cls">NoSuchElementException</span>.<span class="kw">class</span>);
+
+<span class="cls">WebElement</span> el = fluentWait.<span class="fn">until</span>(d ->
+  d.<span class="fn">findElement</span>(By.<span class="fn">id</span>(<span class="str">"dynamic-content"</span>)));
+
+<span class="cmt">// Custom condition — wait until cart count is NOT zero</span>
+fluentWait.<span class="fn">until</span>(d -> {
+  <span class="cls">String</span> count = d.<span class="fn">findElement</span>(By.<span class="fn">id</span>(<span class="str">"cart-count"</span>)).<span class="fn">getText</span>();
+  <span class="kw">return</span> !count.<span class="fn">equals</span>(<span class="str">"0"</span>);
+});</pre>
+  </div>
+  <div class="lv lv-p"><div class="lv-dot"></div>Reusable WaitHelper Utility</div>
+  <div class="card">
+    <h4>utils/WaitHelper.java — Use in all page classes</h4>
+    <pre><span class="kw">public class</span> <span class="cls">WaitHelper</span> {
+  <span class="kw">private</span> <span class="cls">WebDriverWait</span> wait;
+
+  <span class="kw">public</span> <span class="cls">WaitHelper</span>(<span class="cls">WebDriver</span> driver) {
+    <span class="kw">this</span>.wait = <span class="kw">new</span> <span class="cls">WebDriverWait</span>(driver,
+      <span class="cls">Duration</span>.<span class="fn">ofSeconds</span>(<span class="num">15</span>));
+  }
+
+  <span class="kw">public</span> <span class="cls">WebElement</span> <span class="fn">waitForClickable</span>(<span class="cls">By</span> by) {
+    <span class="kw">return</span> wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">elementToBeClickable</span>(by));
+  }
+
+  <span class="kw">public</span> <span class="cls">WebElement</span> <span class="fn">waitForVisible</span>(<span class="cls">By</span> by) {
+    <span class="kw">return</span> wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">visibilityOfElementLocated</span>(by));
+  }
+
+  <span class="kw">public void</span> <span class="fn">waitForInvisible</span>(<span class="cls">By</span> by) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">invisibilityOfElementLocated</span>(by));
+  }
+
+  <span class="kw">public void</span> <span class="fn">waitForUrl</span>(<span class="cls">String</span> urlPart) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">urlContains</span>(urlPart));
+  }
+
+  <span class="kw">public void</span> <span class="fn">waitForText</span>(<span class="cls">By</span> by, <span class="cls">String</span> text) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">textToBe</span>(by, text));
+  }
+}</pre>
+  </div>
+</div>
+
+<!-- POM -->
+<div id="pom" class="sec">
+  <div class="sh"><div class="badge">🗂️ POM</div><h2>Page Object Model — Full Java Project</h2><p>Complete folder layout, BasePage, all page classes with @FindBy, PageFactory and real ecommerce locators.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>Project Structure</div>
+  <div class="card">
+    <div class="folder">
+<span class="dir">jiomart-selenium/</span>
+├── <span class="dir">src/main/java/</span>
+│   ├── <span class="dir">base/</span>
+│   │   └── <span class="fi">BasePage.java</span>         <span class="cm">// shared methods</span>
+│   ├── <span class="dir">pages/</span>
+│   │   ├── <span class="fi">LoginPage.java</span>
+│   │   ├── <span class="fi">HomePage.java</span>
+│   │   ├── <span class="fi">ProductPage.java</span>
+│   │   ├── <span class="fi">CartPage.java</span>
+│   │   └── <span class="fi">CheckoutPage.java</span>
+│   └── <span class="dir">utils/</span>
+│       ├── <span class="fi">WaitHelper.java</span>
+│       ├── <span class="fi">ScreenshotUtil.java</span>
+│       └── <span class="fi">TestData.java</span>
+├── <span class="dir">src/test/java/</span>
+│   ├── <span class="fi">BaseTest.java</span>             <span class="cm">// @BeforeMethod @AfterMethod</span>
+│   └── <span class="dir">tests/</span>
+│       ├── <span class="fi">LoginTest.java</span>
+│       ├── <span class="fi">SearchTest.java</span>
+│       ├── <span class="fi">CartTest.java</span>
+│       └── <span class="fi">OrderPlacementTest.java</span>
+├── <span class="dir">src/test/resources/</span>
+│   ├── <span class="fi">testng.xml</span>
+│   └── <span class="fi">config.properties</span>
+└── <span class="fi">pom.xml</span>
+    </div>
+  </div>
+  <div class="lv lv-s"><div class="lv-dot"></div>BasePage.java</div>
+  <div class="card">
+    <div class="cl">base/BasePage.java</div>
+    <pre><span class="kw">package</span> base;
+<span class="kw">import</span> org.openqa.selenium.*;
+<span class="kw">import</span> org.openqa.selenium.support.PageFactory;
+<span class="kw">import</span> org.openqa.selenium.support.ui.*;
+<span class="kw">import</span> java.time.Duration;
+
+<span class="kw">public class</span> <span class="cls">BasePage</span> {
+  <span class="kw">protected</span> <span class="cls">WebDriver</span> driver;
+  <span class="kw">protected</span> <span class="cls">WebDriverWait</span> wait;
+
+  <span class="kw">public</span> <span class="cls">BasePage</span>(<span class="cls">WebDriver</span> driver) {
+    <span class="kw">this</span>.driver = driver;
+    <span class="kw">this</span>.wait   = <span class="kw">new</span> <span class="cls">WebDriverWait</span>(driver,
+      <span class="cls">Duration</span>.<span class="fn">ofSeconds</span>(<span class="num">15</span>));
+    <span class="cls">PageFactory</span>.<span class="fn">initElements</span>(driver, <span class="kw">this</span>);
+  }
+
+  <span class="kw">protected void</span> <span class="fn">click</span>(<span class="cls">WebElement</span> el) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>
+      .<span class="fn">elementToBeClickable</span>(el)).<span class="fn">click</span>();
+  }
+
+  <span class="kw">protected void</span> <span class="fn">type</span>(<span class="cls">WebElement</span> el, <span class="cls">String</span> text) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>
+      .<span class="fn">visibilityOf</span>(el));
+    el.<span class="fn">clear</span>();
+    el.<span class="fn">sendKeys</span>(text);
+  }
+
+  <span class="kw">protected</span> <span class="cls">String</span> <span class="fn">getText</span>(<span class="cls">WebElement</span> el) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">visibilityOf</span>(el));
+    <span class="kw">return</span> el.<span class="fn">getText</span>();
+  }
+
+  <span class="kw">protected boolean</span> <span class="fn">isDisplayed</span>(<span class="cls">WebElement</span> el) {
+    <span class="kw">try</span> { <span class="kw">return</span> el.<span class="fn">isDisplayed</span>(); }
+    <span class="kw">catch</span> (<span class="cls">NoSuchElementException</span> e) { <span class="kw">return false</span>; }
+  }
+
+  <span class="kw">protected void</span> <span class="fn">waitForUrl</span>(<span class="cls">String</span> urlPart) {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">urlContains</span>(urlPart));
+  }
+
+  <span class="kw">protected void</span> <span class="fn">scrollToElement</span>(<span class="cls">WebElement</span> el) {
+    ((<span class="cls">JavascriptExecutor</span>) driver)
+      .<span class="fn">executeScript</span>(<span class="str">"arguments[0].scrollIntoView(true);"</span>, el);
+  }
+}</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>All Page Classes</div>
+  <div class="card">
+    <h4>LoginPage.java</h4>
+    <div class="cl">pages/LoginPage.java</div>
+    <pre><span class="kw">package</span> pages;
+<span class="kw">import</span> base.BasePage;
+<span class="kw">import</span> org.openqa.selenium.*;
+<span class="kw">import</span> org.openqa.selenium.support.FindBy;
+
+<span class="kw">public class</span> <span class="cls">LoginPage</span> <span class="kw">extends</span> <span class="cls">BasePage</span> {
+
+  <span class="ann">@FindBy</span>(name = <span class="str">"mobileNumber"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> mobileInput;
+
+  <span class="ann">@FindBy</span>(name = <span class="str">"otp"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> otpInput;
+
+  <span class="ann">@FindBy</span>(xpath = <span class="str">"//button[contains(.,'Get OTP')]"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> getOtpBtn;
+
+  <span class="ann">@FindBy</span>(xpath = <span class="str">"//button[contains(.,'Verify')]"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> verifyBtn;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"login-error-msg"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> errorMsg;
+
+  <span class="kw">public</span> <span class="cls">LoginPage</span>(<span class="cls">WebDriver</span> driver) { <span class="kw">super</span>(driver); }
+
+  <span class="kw">public void</span> <span class="fn">navigateTo</span>() {
+    driver.<span class="fn">get</span>(<span class="str">"https://sit.jiomart.com/login"</span>);
+  }
+
+  <span class="kw">public void</span> <span class="fn">login</span>(<span class="cls">String</span> mobile, <span class="cls">String</span> otp) {
+    <span class="fn">type</span>(mobileInput, mobile);
+    <span class="fn">click</span>(getOtpBtn);
+    <span class="fn">type</span>(otpInput, otp);
+    <span class="fn">click</span>(verifyBtn);
+    <span class="fn">waitForUrl</span>(<span class="str">"home"</span>);
+  }
+
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getErrorMessage</span>() {
+    <span class="kw">return</span> <span class="fn">getText</span>(errorMsg);
+  }
+
+  <span class="kw">public boolean</span> <span class="fn">isErrorDisplayed</span>() {
+    <span class="kw">return</span> <span class="fn">isDisplayed</span>(errorMsg);
+  }
+}</pre>
+  </div>
+  <div class="card">
+    <h4>HomePage.java</h4>
+    <div class="cl">pages/HomePage.java</div>
+    <pre><span class="kw">package</span> pages;
+<span class="kw">import</span> base.BasePage;
+<span class="kw">import</span> org.openqa.selenium.*;
+<span class="kw">import</span> org.openqa.selenium.support.FindBy;
+<span class="kw">import</span> java.util.List;
+
+<span class="kw">public class</span> <span class="cls">HomePage</span> <span class="kw">extends</span> <span class="cls">BasePage</span> {
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"search-bar"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> searchBox;
+
+  <span class="ann">@FindBy</span>(cssSelector = <span class="str">".product-card"</span>)
+  <span class="kw">private</span> List&lt;WebElement&gt; productCards;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"cart-count"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> cartCount;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"cart-icon"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> cartIcon;
+
+  <span class="kw">public</span> <span class="cls">HomePage</span>(<span class="cls">WebDriver</span> driver) { <span class="kw">super</span>(driver); }
+
+  <span class="kw">public void</span> <span class="fn">searchProduct</span>(<span class="cls">String</span> query) {
+    <span class="fn">type</span>(searchBox, query);
+    searchBox.<span class="fn">sendKeys</span>(<span class="cls">Keys</span>.ENTER);
+  }
+
+  <span class="kw">public void</span> <span class="fn">clickFirstProduct</span>() {
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>
+      .<span class="fn">numberOfElementsToBeMoreThan</span>(
+        By.<span class="fn">cssSelector</span>(<span class="str">".product-card"</span>), <span class="num">0</span>));
+    <span class="fn">click</span>(productCards.<span class="fn">get</span>(<span class="num">0</span>));
+  }
+
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getCartCount</span>() {
+    <span class="kw">return</span> <span class="fn">getText</span>(cartCount);
+  }
+
+  <span class="kw">public void</span> <span class="fn">goToCart</span>() { <span class="fn">click</span>(cartIcon); }
+}</pre>
+  </div>
+  <div class="card">
+    <h4>ProductPage.java</h4>
+    <div class="cl">pages/ProductPage.java</div>
+    <pre><span class="kw">package</span> pages;
+<span class="kw">import</span> base.BasePage;
+<span class="kw">import</span> org.openqa.selenium.*;
+<span class="kw">import</span> org.openqa.selenium.support.FindBy;
+
+<span class="kw">public class</span> <span class="cls">ProductPage</span> <span class="kw">extends</span> <span class="cls">BasePage</span> {
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"product-title"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> productTitle;
+
+  <span class="ann">@FindBy</span>(cssSelector = <span class="str">".product-price"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> productPrice;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"add-to-cart-btn"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> addToCartBtn;
+
+  <span class="ann">@FindBy</span>(className = <span class="str">"success-toast"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> successToast;
+
+  <span class="ann">@FindBy</span>(xpath = <span class="str">"//span[contains(@class,'out-of-stock')]"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> outOfStockMsg;
+
+  <span class="kw">public</span> <span class="cls">ProductPage</span>(<span class="cls">WebDriver</span> driver) { <span class="kw">super</span>(driver); }
+
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getProductName</span>()  { <span class="kw">return</span> <span class="fn">getText</span>(productTitle); }
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getProductPrice</span>() { <span class="kw">return</span> <span class="fn">getText</span>(productPrice); }
+
+  <span class="kw">public void</span> <span class="fn">addToCart</span>() {
+    <span class="fn">scrollToElement</span>(addToCartBtn);
+    <span class="fn">click</span>(addToCartBtn);
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">visibilityOf</span>(successToast));
+  }
+
+  <span class="kw">public boolean</span> <span class="fn">isAddToCartEnabled</span>() {
+    <span class="kw">return</span> addToCartBtn.<span class="fn">isEnabled</span>();
+  }
+
+  <span class="kw">public boolean</span> <span class="fn">isOutOfStock</span>() {
+    <span class="kw">return</span> <span class="fn">isDisplayed</span>(outOfStockMsg);
+  }
+}</pre>
+  </div>
+  <div class="card">
+    <h4>CartPage.java</h4>
+    <div class="cl">pages/CartPage.java</div>
+    <pre><span class="kw">package</span> pages;
+<span class="kw">import</span> base.BasePage;
+<span class="kw">import</span> org.openqa.selenium.*;
+<span class="kw">import</span> org.openqa.selenium.support.FindBy;
+<span class="kw">import</span> java.util.List;
+
+<span class="kw">public class</span> <span class="cls">CartPage</span> <span class="kw">extends</span> <span class="cls">BasePage</span> {
+
+  <span class="ann">@FindBy</span>(cssSelector = <span class="str">".cart-item"</span>)
+  <span class="kw">private</span> List&lt;WebElement&gt; cartItems;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"cart-total"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> totalPrice;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"checkout-btn"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> checkoutBtn;
+
+  <span class="ann">@FindBy</span>(xpath = <span class="str">"//p[contains(.,'cart is empty')]"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> emptyMsg;
+
+  <span class="kw">public</span> <span class="cls">CartPage</span>(<span class="cls">WebDriver</span> driver) { <span class="kw">super</span>(driver); }
+
+  <span class="kw">public void</span> <span class="fn">navigateTo</span>() {
+    driver.<span class="fn">get</span>(<span class="str">"https://sit.jiomart.com/cart"</span>);
+  }
+
+  <span class="kw">public int</span> <span class="fn">getItemCount</span>() { <span class="kw">return</span> cartItems.<span class="fn">size</span>(); }
+
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getTotalPrice</span>() { <span class="kw">return</span> <span class="fn">getText</span>(totalPrice); }
+
+  <span class="kw">public boolean</span> <span class="fn">isCartEmpty</span>() { <span class="kw">return</span> <span class="fn">isDisplayed</span>(emptyMsg); }
+
+  <span class="kw">public void</span> <span class="fn">proceedToCheckout</span>() {
+    <span class="fn">click</span>(checkoutBtn);
+    <span class="fn">waitForUrl</span>(<span class="str">"checkout"</span>);
+  }
+
+  <span class="kw">public void</span> <span class="fn">removeItem</span>(<span class="cls">String</span> productName) {
+    driver.<span class="fn">findElement</span>(By.<span class="fn">xpath</span>(
+      <span class="str">"//div[@class='cart-item'][contains(.,'"</span> + productName +
+      <span class="str">"')]//button[@class='remove-btn']"</span>)).<span class="fn">click</span>();
+  }
+}</pre>
+  </div>
+  <div class="card">
+    <h4>CheckoutPage.java</h4>
+    <div class="cl">pages/CheckoutPage.java</div>
+    <pre><span class="kw">package</span> pages;
+<span class="kw">import</span> base.BasePage;
+<span class="kw">import</span> org.openqa.selenium.*;
+<span class="kw">import</span> org.openqa.selenium.support.FindBy;
+
+<span class="kw">public class</span> <span class="cls">CheckoutPage</span> <span class="kw">extends</span> <span class="cls">BasePage</span> {
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"cod-radio"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> codRadio;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"online-pay-radio"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> onlinePayRadio;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"place-order-btn"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> placeOrderBtn;
+
+  <span class="ann">@FindBy</span>(cssSelector = <span class="str">".address-card:first-child"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> firstAddress;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"order-success-msg"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> successMsg;
+
+  <span class="ann">@FindBy</span>(id = <span class="str">"order-id"</span>)
+  <span class="kw">private</span> <span class="cls">WebElement</span> orderId;
+
+  <span class="kw">public</span> <span class="cls">CheckoutPage</span>(<span class="cls">WebDriver</span> driver) { <span class="kw">super</span>(driver); }
+
+  <span class="kw">public void</span> <span class="fn">selectAddress</span>()    { <span class="fn">click</span>(firstAddress); }
+
+  <span class="kw">public void</span> <span class="fn">selectCOD</span>()        { <span class="fn">click</span>(codRadio); }
+  <span class="kw">public void</span> <span class="fn">selectOnlinePay</span>()  { <span class="fn">click</span>(onlinePayRadio); }
+
+  <span class="kw">public void</span> <span class="fn">placeOrder</span>() {
+    <span class="fn">click</span>(placeOrderBtn);
+    wait.<span class="fn">until</span>(<span class="cls">ExpectedConditions</span>.<span class="fn">visibilityOf</span>(successMsg));
+  }
+
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getSuccessMessage</span>() { <span class="kw">return</span> <span class="fn">getText</span>(successMsg); }
+  <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getOrderId</span>()        { <span class="kw">return</span> <span class="fn">getText</span>(orderId); }
+
+  <span class="kw">public boolean</span> <span class="fn">isCodSelected</span>() { <span class="kw">return</span> codRadio.<span class="fn">isSelected</span>(); }
+}</pre>
+  </div>
+</div>
+
+<!-- E2E FLOW -->
+<div id="e2e" class="sec">
+  <div class="sh"><div class="badge">🛒 E2E Flow</div><h2>End-to-End Ecommerce Flow — Java</h2><p>Full order placement test using Selenium + Java + TestNG + POM. Login → Search → Product → Cart → COD → Confirmation.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>Flow Overview</div>
+  <div class="card">
+    <div class="sr"><div class="sn">1</div><div class="sb"><strong>Launch + Login</strong><p>Open SIT URL → Enter mobile → Get OTP → Enter OTP → Assert logged in</p></div></div>
+    <div class="sr"><div class="sn">2</div><div class="sb"><strong>Search by SKU</strong><p>Type in search bar → Press Enter → Assert results appear</p></div></div>
+    <div class="sr"><div class="sn">3</div><div class="sb"><strong>Open Product</strong><p>Click first product card → Assert title, price, Add to Cart button visible</p></div></div>
+    <div class="sr"><div class="sn">4</div><div class="sb"><strong>Add to Cart</strong><p>Click Add to Cart → Assert toast shown → Assert cart count = 1</p></div></div>
+    <div class="sr"><div class="sn">5</div><div class="sb"><strong>View Cart</strong><p>Go to cart page → Assert item present → Assert total price shown</p></div></div>
+    <div class="sr"><div class="sn">6</div><div class="sb"><strong>Proceed to Checkout</strong><p>Click Proceed → Assert URL contains "checkout" → Select address</p></div></div>
+    <div class="sr"><div class="sn">7</div><div class="sb"><strong>Select COD</strong><p>Click Cash on Delivery radio → Assert it is selected</p></div></div>
+    <div class="sr"><div class="sn">8</div><div class="sb"><strong>Place Order</strong><p>Click Place Order → Assert success message → Capture Order ID</p></div></div>
+  </div>
+  <div class="lv lv-s"><div class="lv-dot"></div>BaseTest.java — Setup & Teardown</div>
+  <div class="card">
+    <div class="cl">BaseTest.java</div>
+    <pre><span class="kw">package</span> tests;
+<span class="kw">import</span> io.github.bonigarcia.wdm.WebDriverManager;
+<span class="kw">import</span> org.openqa.selenium.WebDriver;
+<span class="kw">import</span> org.openqa.selenium.chrome.ChromeDriver;
+<span class="kw">import</span> org.testng.annotations.*;
+
+<span class="kw">public class</span> <span class="cls">BaseTest</span> {
+  <span class="kw">protected</span> <span class="cls">WebDriver</span> driver;
+
+  <span class="ann">@BeforeMethod</span>
+  <span class="kw">public void</span> <span class="fn">setUp</span>() {
+    WebDriverManager.<span class="fn">chromedriver</span>().<span class="fn">setup</span>();
+    driver = <span class="kw">new</span> <span class="cls">ChromeDriver</span>();
+    driver.<span class="fn">manage</span>().<span class="fn">window</span>().<span class="fn">maximize</span>();
+  }
+
+  <span class="ann">@AfterMethod</span>
+  <span class="kw">public void</span> <span class="fn">tearDown</span>() {
+    <span class="kw">if</span> (driver != <span class="kw">null</span>) driver.<span class="fn">quit</span>();
+  }
+}</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>Full E2E Test Class</div>
+  <div class="card">
+    <h4>OrderPlacementTest.java — Complete Test</h4>
+    <div class="cl">tests/OrderPlacementTest.java</div>
+    <pre><span class="kw">package</span> tests;
+<span class="kw">import</span> pages.*;
+<span class="kw">import</span> utils.TestData;
+<span class="kw">import</span> org.testng.Assert;
+<span class="kw">import</span> org.testng.annotations.Test;
+
+<span class="kw">public class</span> <span class="cls">OrderPlacementTest</span> <span class="kw">extends</span> <span class="cls">BaseTest</span> {
+
+  <span class="ann">@Test</span>(description = <span class="str">"Full COD order placement E2E"</span>)
+  <span class="kw">public void</span> <span class="fn">testCODOrderPlacement</span>() {
+
+    <span class="cmt">// ── STEP 1: Login ────────────────────────────────────</span>
+    <span class="cls">LoginPage</span> loginPage = <span class="kw">new</span> <span class="cls">LoginPage</span>(driver);
+    loginPage.<span class="fn">navigateTo</span>();
+    loginPage.<span class="fn">login</span>(<span class="cls">TestData</span>.MOBILE, <span class="cls">TestData</span>.OTP);
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(
+      driver.<span class="fn">getCurrentUrl</span>().<span class="fn">contains</span>(<span class="str">"home"</span>),
+      <span class="str">"Login failed — not on home page"</span>);
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 1: Login successful"</span>);
+
+    <span class="cmt">// ── STEP 2: Search Product ────────────────────────────</span>
+    <span class="cls">HomePage</span> homePage = <span class="kw">new</span> <span class="cls">HomePage</span>(driver);
+    homePage.<span class="fn">searchProduct</span>(<span class="cls">TestData</span>.SKU);
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 2: Search results loaded"</span>);
+
+    <span class="cmt">// ── STEP 3: Open Product ──────────────────────────────</span>
+    homePage.<span class="fn">clickFirstProduct</span>();
+    <span class="cls">ProductPage</span> productPage = <span class="kw">new</span> <span class="cls">ProductPage</span>(driver);
+    <span class="cls">String</span> productName = productPage.<span class="fn">getProductName</span>();
+    <span class="cls">String</span> productPrice = productPage.<span class="fn">getProductPrice</span>();
+    <span class="cls">Assert</span>.<span class="fn">assertFalse</span>(productName.<span class="fn">isEmpty</span>(), <span class="str">"Product name empty"</span>);
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(productPage.<span class="fn">isAddToCartEnabled</span>(), <span class="str">"Button disabled"</span>);
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 3: Product — "</span> + productName + <span class="str">" @ "</span> + productPrice);
+
+    <span class="cmt">// ── STEP 4: Add to Cart ───────────────────────────────</span>
+    productPage.<span class="fn">addToCart</span>();
+    <span class="cls">Assert</span>.<span class="fn">assertEquals</span>(
+      homePage.<span class="fn">getCartCount</span>(), <span class="str">"1"</span>, <span class="str">"Cart count mismatch"</span>);
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 4: Added to cart"</span>);
+
+    <span class="cmt">// ── STEP 5: Verify Cart ───────────────────────────────</span>
+    <span class="cls">CartPage</span> cartPage = <span class="kw">new</span> <span class="cls">CartPage</span>(driver);
+    cartPage.<span class="fn">navigateTo</span>();
+    <span class="cls">Assert</span>.<span class="fn">assertFalse</span>(cartPage.<span class="fn">isCartEmpty</span>(), <span class="str">"Cart is empty!"</span>);
+    <span class="cls">Assert</span>.<span class="fn">assertEquals</span>(cartPage.<span class="fn">getItemCount</span>(), <span class="num">1</span>);
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 5: Cart verified — Total: "</span> + cartPage.<span class="fn">getTotalPrice</span>());
+
+    <span class="cmt">// ── STEP 6: Checkout ──────────────────────────────────</span>
+    cartPage.<span class="fn">proceedToCheckout</span>();
+    <span class="cls">CheckoutPage</span> checkoutPage = <span class="kw">new</span> <span class="cls">CheckoutPage</span>(driver);
+    checkoutPage.<span class="fn">selectAddress</span>();
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 6: Address selected"</span>);
+
+    <span class="cmt">// ── STEP 7: Select COD ────────────────────────────────</span>
+    checkoutPage.<span class="fn">selectCOD</span>();
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(checkoutPage.<span class="fn">isCodSelected</span>(), <span class="str">"COD not selected"</span>);
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 7: COD selected"</span>);
+
+    <span class="cmt">// ── STEP 8: Place Order + Assert ──────────────────────</span>
+    checkoutPage.<span class="fn">placeOrder</span>();
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(
+      checkoutPage.<span class="fn">getSuccessMessage</span>().<span class="fn">contains</span>(<span class="str">"Order Placed"</span>),
+      <span class="str">"Order success message not found"</span>);
+    <span class="cls">String</span> orderId = checkoutPage.<span class="fn">getOrderId</span>();
+    <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"✅ Step 8: Order ID — "</span> + orderId);
+    <span class="cls">Assert</span>.<span class="fn">assertNotNull</span>(orderId, <span class="str">"Order ID is null"</span>);
+  }
+
+  <span class="ann">@Test</span>(description = <span class="str">"Out of stock product — button disabled"</span>)
+  <span class="kw">public void</span> <span class="fn">testOutOfStockProduct</span>() {
+    <span class="cls">LoginPage</span> lp = <span class="kw">new</span> <span class="cls">LoginPage</span>(driver);
+    lp.<span class="fn">navigateTo</span>(); lp.<span class="fn">login</span>(<span class="cls">TestData</span>.MOBILE, <span class="cls">TestData</span>.OTP);
+    driver.<span class="fn">get</span>(<span class="str">"https://sit.jiomart.com/product/JM-OUT-001"</span>);
+    <span class="cls">ProductPage</span> pp = <span class="kw">new</span> <span class="cls">ProductPage</span>(driver);
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(pp.<span class="fn">isOutOfStock</span>(), <span class="str">"Out of stock msg missing"</span>);
+    <span class="cls">Assert</span>.<span class="fn">assertFalse</span>(pp.<span class="fn">isAddToCartEnabled</span>(), <span class="str">"Button should be disabled"</span>);
+  }
+
+  <span class="ann">@Test</span>(description = <span class="str">"Empty cart — checkout button not visible"</span>)
+  <span class="kw">public void</span> <span class="fn">testEmptyCart</span>() {
+    <span class="cls">LoginPage</span> lp = <span class="kw">new</span> <span class="cls">LoginPage</span>(driver);
+    lp.<span class="fn">navigateTo</span>(); lp.<span class="fn">login</span>(<span class="cls">TestData</span>.MOBILE, <span class="cls">TestData</span>.OTP);
+    <span class="cls">CartPage</span> cp = <span class="kw">new</span> <span class="cls">CartPage</span>(driver);
+    cp.<span class="fn">navigateTo</span>();
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(cp.<span class="fn">isCartEmpty</span>(), <span class="str">"Cart should be empty"</span>);
+  }
+}</pre>
+  </div>
+  <div class="card">
+    <h4>utils/TestData.java</h4>
+    <pre><span class="kw">package</span> utils;
+<span class="kw">public class</span> <span class="cls">TestData</span> {
+  <span class="kw">public static final</span> <span class="cls">String</span> MOBILE  = <span class="str">"9876543210"</span>;
+  <span class="kw">public static final</span> <span class="cls">String</span> OTP     = <span class="str">"1234"</span>;
+  <span class="kw">public static final</span> <span class="cls">String</span> SKU     = <span class="str">"JM-9876"</span>;
+  <span class="kw">public static final</span> <span class="cls">String</span> BASE_URL= <span class="str">"https://sit.jiomart.com"</span>;
+}</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>Negative Test Scenarios</div>
+  <div class="card">
+    <div class="tbl"><table>
+      <thead><tr><th>Scenario</th><th>Expected Result</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>Login with wrong OTP</td><td>Error message shown, no redirect</td><td style="color:#991b1b">High</td></tr>
+        <tr><td>Add out-of-stock item</td><td>Button disabled, "Out of Stock" shown</td><td style="color:#991b1b">High</td></tr>
+        <tr><td>Checkout with empty cart</td><td>Checkout button not visible</td><td style="color:#991b1b">High</td></tr>
+        <tr><td>Invalid coupon code</td><td>Error: "Invalid coupon"</td><td style="color:#d97706">Medium</td></tr>
+        <tr><td>Order with no address</td><td>Prompt to add address</td><td style="color:#991b1b">High</td></tr>
+        <tr><td>Back button after order</td><td>Does not re-submit</td><td style="color:#d97706">Medium</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ADVANCED -->
+<div id="advanced" class="sec">
+  <div class="sh"><div class="badge">⚡ Advanced</div><h2>Advanced Selenium — Java</h2><p>Actions class, JavaScript executor, iFrames, alerts, dropdowns, screenshots, file upload.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>Actions Class</div>
+  <div class="card">
+    <h4>Mouse + Keyboard Actions</h4>
+    <pre><span class="kw">import</span> org.openqa.selenium.interactions.Actions;
+
+<span class="cls">Actions</span> actions = <span class="kw">new</span> <span class="cls">Actions</span>(driver);
+
+<span class="cmt">// Hover over element (reveals dropdown menu)</span>
+<span class="cls">WebElement</span> menu = driver.<span class="fn">findElement</span>(By.<span class="fn">id</span>(<span class="str">"categories-menu"</span>));
+actions.<span class="fn">moveToElement</span>(menu).<span class="fn">perform</span>();
+
+<span class="cmt">// Click and hold → drag and drop</span>
+actions.<span class="fn">dragAndDrop</span>(sourceEl, targetEl).<span class="fn">perform</span>();
+
+<span class="cmt">// Right-click (context menu)</span>
+actions.<span class="fn">contextClick</span>(element).<span class="fn">perform</span>();
+
+<span class="cmt">// Double-click</span>
+actions.<span class="fn">doubleClick</span>(element).<span class="fn">perform</span>();
+
+<span class="cmt">// Ctrl+A (select all)</span>
+actions.<span class="fn">keyDown</span>(<span class="cls">Keys</span>.CONTROL)
+       .<span class="fn">sendKeys</span>(<span class="str">"a"</span>)
+       .<span class="fn">keyUp</span>(<span class="cls">Keys</span>.CONTROL)
+       .<span class="fn">perform</span>();
+
+<span class="cmt">// Move to element and click (better than direct click)</span>
+actions.<span class="fn">moveToElement</span>(addToCartBtn).<span class="fn">click</span>().<span class="fn">perform</span>();
+
+<span class="cmt">// Scroll to element by offset</span>
+actions.<span class="fn">scrollToElement</span>(element).<span class="fn">perform</span>();</pre>
+  </div>
+  <div class="lv lv-s"><div class="lv-dot"></div>JavaScript Executor</div>
+  <div class="card">
+    <h4>When Selenium clicks fail — use JS</h4>
+    <pre><span class="cls">JavascriptExecutor</span> js = (<span class="cls">JavascriptExecutor</span>) driver;
+
+<span class="cmt">// Click hidden or overlapping element</span>
+js.<span class="fn">executeScript</span>(<span class="str">"arguments[0].click();"</span>, btn);
+
+<span class="cmt">// Scroll to element</span>
+js.<span class="fn">executeScript</span>(<span class="str">"arguments[0].scrollIntoView(true);"</span>, el);
+
+<span class="cmt">// Scroll to bottom of page</span>
+js.<span class="fn">executeScript</span>(<span class="str">"window.scrollTo(0, document.body.scrollHeight);"</span>);
+
+<span class="cmt">// Scroll to top</span>
+js.<span class="fn">executeScript</span>(<span class="str">"window.scrollTo(0, 0);"</span>);
+
+<span class="cmt">// Get page title via JS</span>
+<span class="cls">String</span> title = (<span class="cls">String</span>) js.<span class="fn">executeScript</span>(<span class="str">"return document.title;"</span>);
+
+<span class="cmt">// Set value in a field (when sendKeys fails)</span>
+js.<span class="fn">executeScript</span>(<span class="str">"arguments[0].value='9876543210';"</span>, mobileInput);
+
+<span class="cmt">// Get inner text</span>
+<span class="cls">String</span> txt = (<span class="cls">String</span>) js.<span class="fn">executeScript</span>(
+  <span class="str">"return arguments[0].innerText;"</span>, element);</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>iFrames, Alerts, Dropdowns</div>
+  <div class="g2">
+    <div class="card">
+      <h4>iFrames</h4>
+      <pre><span class="cmt">// Switch into iframe by index</span>
+driver.<span class="fn">switchTo</span>().<span class="fn">frame</span>(<span class="num">0</span>);
+
+<span class="cmt">// By name or ID</span>
+driver.<span class="fn">switchTo</span>().<span class="fn">frame</span>(<span class="str">"payment-frame"</span>);
+
+<span class="cmt">// By WebElement</span>
+<span class="cls">WebElement</span> iFrame = driver
+  .<span class="fn">findElement</span>(By.<span class="fn">tagName</span>(<span class="str">"iframe"</span>));
+driver.<span class="fn">switchTo</span>().<span class="fn">frame</span>(iFrame);
+
+<span class="cmt">// Now interact inside iframe</span>
+driver.<span class="fn">findElement</span>(By.<span class="fn">id</span>(<span class="str">"card-number"</span>))
+      .<span class="fn">sendKeys</span>(<span class="str">"4111111111111111"</span>);
+
+<span class="cmt">// Switch BACK to main page</span>
+driver.<span class="fn">switchTo</span>().<span class="fn">defaultContent</span>();</pre>
+    </div>
+    <div class="card">
+      <h4>Alerts + Dropdowns</h4>
+      <pre><span class="cmt">// Handle JS Alert</span>
+<span class="cls">Alert</span> alert = driver.<span class="fn">switchTo</span>().<span class="fn">alert</span>();
+<span class="cls">System</span>.out.<span class="fn">println</span>(alert.<span class="fn">getText</span>());
+alert.<span class="fn">accept</span>();   <span class="cmt">// click OK</span>
+alert.<span class="fn">dismiss</span>();  <span class="cmt">// click Cancel</span>
+alert.<span class="fn">sendKeys</span>(<span class="str">"text"</span>); <span class="cmt">// prompt</span>
+
+<span class="cmt">// Select dropdown by visible text</span>
+<span class="kw">import</span> org.openqa.selenium.support.ui.Select;
+<span class="cls">Select</span> dropdown = <span class="kw">new</span> <span class="cls">Select</span>(
+  driver.<span class="fn">findElement</span>(By.<span class="fn">id</span>(<span class="str">"state-select"</span>)));
+dropdown.<span class="fn">selectByVisibleText</span>(<span class="str">"Maharashtra"</span>);
+dropdown.<span class="fn">selectByValue</span>(<span class="str">"MH"</span>);
+dropdown.<span class="fn">selectByIndex</span>(<span class="num">2</span>);</pre>
+    </div>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>Screenshot on Failure</div>
+  <div class="card">
+    <h4>utils/ScreenshotUtil.java</h4>
+    <pre><span class="kw">import</span> org.openqa.selenium.TakesScreenshot;
+<span class="kw">import</span> org.openqa.selenium.OutputType;
+<span class="kw">import</span> org.apache.commons.io.FileUtils;
+<span class="kw">import</span> java.io.File; <span class="kw">import</span> java.time.LocalDateTime;
+
+<span class="kw">public class</span> <span class="cls">ScreenshotUtil</span> {
+  <span class="kw">public static</span> <span class="cls">String</span> <span class="fn">takeScreenshot</span>(<span class="cls">WebDriver</span> driver, <span class="cls">String</span> name) {
+    <span class="kw">try</span> {
+      <span class="cls">File</span> src = ((<span class="cls">TakesScreenshot</span>) driver)
+        .<span class="fn">getScreenshotAs</span>(<span class="cls">OutputType</span>.FILE);
+      <span class="cls">String</span> path = <span class="str">"screenshots/"</span> + name + <span class="str">"_"</span>
+        + <span class="cls">LocalDateTime</span>.<span class="fn">now</span>() + <span class="str">".png"</span>;
+      <span class="cls">FileUtils</span>.<span class="fn">copyFile</span>(src, <span class="kw">new</span> <span class="cls">File</span>(path));
+      <span class="kw">return</span> path;
+    } <span class="kw">catch</span> (<span class="cls">Exception</span> e) { <span class="kw">return null</span>; }
+  }
+}</pre>
+  </div>
+</div>
+
+<!-- TESTNG -->
+<div id="testng" class="sec">
+  <div class="sh"><div class="badge">🧪 TestNG</div><h2>TestNG — Full Guide</h2><p>All annotations, groups, data providers, parallel execution and testng.xml.</p></div>
+  <div class="lv lv-s"><div class="lv-dot"></div>All Annotations</div>
+  <div class="card">
+    <div class="tbl"><table>
+      <thead><tr><th>Annotation</th><th>When It Runs</th><th>Use For</th></tr></thead>
+      <tbody>
+        <tr><td>@BeforeSuite</td><td>Once before entire suite</td><td>DB/server setup</td></tr>
+        <tr><td>@AfterSuite</td><td>Once after entire suite</td><td>Clean up resources</td></tr>
+        <tr><td>@BeforeClass</td><td>Once before each test class</td><td>Class-level driver setup</td></tr>
+        <tr><td>@AfterClass</td><td>Once after each test class</td><td>Class-level teardown</td></tr>
+        <tr><td>@BeforeMethod</td><td>Before EACH test method</td><td>Open browser, login</td></tr>
+        <tr><td>@AfterMethod</td><td>After EACH test method</td><td>driver.quit(), screenshot</td></tr>
+        <tr><td>@BeforeGroups</td><td>Before a group runs</td><td>Group-specific setup</td></tr>
+        <tr><td>@Test</td><td>The actual test</td><td>Test logic + assertions</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lv lv-s"><div class="lv-dot"></div>@Test Parameters</div>
+  <div class="card">
+    <pre><span class="cmt">// Priority — lower number runs first</span>
+<span class="ann">@Test</span>(priority = <span class="num">1</span>)
+<span class="kw">public void</span> <span class="fn">loginTest</span>() {}
+
+<span class="cmt">// Groups — smoke, regression, sanity</span>
+<span class="ann">@Test</span>(groups = {<span class="str">"smoke"</span>, <span class="str">"regression"</span>})
+<span class="kw">public void</span> <span class="fn">addToCartTest</span>() {}
+
+<span class="cmt">// Depends on another test passing first</span>
+<span class="ann">@Test</span>(dependsOnMethods = {<span class="str">"loginTest"</span>})
+<span class="kw">public void</span> <span class="fn">searchTest</span>() {}
+
+<span class="cmt">// Expected exception — test passes only if exception thrown</span>
+<span class="ann">@Test</span>(expectedExceptions = <span class="cls">NoSuchElementException</span>.<span class="kw">class</span>)
+<span class="kw">public void</span> <span class="fn">elementNotFoundTest</span>() {}
+
+<span class="cmt">// Skip a test</span>
+<span class="ann">@Test</span>(enabled = <span class="kw">false</span>)
+<span class="kw">public void</span> <span class="fn">skippedTest</span>() {}
+
+<span class="cmt">// Timeout (fail if exceeds 5 seconds)</span>
+<span class="ann">@Test</span>(timeOut = <span class="num">5000</span>)
+<span class="kw">public void</span> <span class="fn">performanceTest</span>() {}
+
+<span class="cmt">// Retry on failure</span>
+<span class="ann">@Test</span>(retryAnalyzer = <span class="cls">RetryAnalyzer</span>.<span class="kw">class</span>)
+<span class="kw">public void</span> <span class="fn">flakeyTest</span>() {}</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>Data Provider — Data Driven Testing</div>
+  <div class="card">
+    <pre><span class="kw">import</span> org.testng.annotations.DataProvider;
+
+<span class="ann">@DataProvider</span>(name = <span class="str">"loginData"</span>)
+<span class="kw">public</span> Object[][] <span class="fn">getLoginData</span>() {
+  <span class="kw">return new</span> Object[][] {
+    { <span class="str">"9876543210"</span>, <span class="str">"1234"</span>, <span class="kw">true</span>  }, <span class="cmt">// valid</span>
+    { <span class="str">"0000000000"</span>, <span class="str">"0000"</span>, <span class="kw">false</span> }, <span class="cmt">// invalid mobile</span>
+    { <span class="str">"9876543210"</span>, <span class="str">"9999"</span>, <span class="kw">false</span> }, <span class="cmt">// wrong OTP</span>
+  };
+}
+
+<span class="cmt">// Use it in test</span>
+<span class="ann">@Test</span>(dataProvider = <span class="str">"loginData"</span>)
+<span class="kw">public void</span> <span class="fn">testLogin</span>(<span class="cls">String</span> mobile, <span class="cls">String</span> otp, <span class="kw">boolean</span> expectSuccess) {
+  <span class="cls">LoginPage</span> lp = <span class="kw">new</span> <span class="cls">LoginPage</span>(driver);
+  lp.<span class="fn">navigateTo</span>();
+  lp.<span class="fn">login</span>(mobile, otp);
+  <span class="kw">if</span> (expectSuccess) {
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(driver.<span class="fn">getCurrentUrl</span>().<span class="fn">contains</span>(<span class="str">"home"</span>));
+  } <span class="kw">else</span> {
+    <span class="cls">Assert</span>.<span class="fn">assertTrue</span>(lp.<span class="fn">isErrorDisplayed</span>());
+  }
+}</pre>
+  </div>
+  <div class="lv lv-m"><div class="lv-dot"></div>testng.xml — Suite Configuration</div>
+  <div class="card">
+    <div class="cl">testng.xml</div>
+    <pre><span class="kw">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="kw">&lt;!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd"&gt;</span>
+<span class="kw">&lt;suite</span> <span class="fn">name</span>=<span class="str">"JioMart E2E Suite"</span> <span class="fn">parallel</span>=<span class="str">"methods"</span> <span class="fn">thread-count</span>=<span class="str">"3"</span><span class="kw">&gt;</span>
+
+  <span class="cmt">&lt;!-- Run only smoke tests --&gt;</span>
+  <span class="kw">&lt;groups&gt;</span>
+    <span class="kw">&lt;run&gt;</span>
+      <span class="kw">&lt;include</span> <span class="fn">name</span>=<span class="str">"smoke"</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/run&gt;</span>
+  <span class="kw">&lt;/groups&gt;</span>
+
+  <span class="kw">&lt;test</span> <span class="fn">name</span>=<span class="str">"Login Tests"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;classes&gt;</span>
+      <span class="kw">&lt;class</span> <span class="fn">name</span>=<span class="str">"tests.LoginTest"</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/classes&gt;</span>
+  <span class="kw">&lt;/test&gt;</span>
+
+  <span class="kw">&lt;test</span> <span class="fn">name</span>=<span class="str">"Order Tests"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;classes&gt;</span>
+      <span class="kw">&lt;class</span> <span class="fn">name</span>=<span class="str">"tests.OrderPlacementTest"</span><span class="kw">/&gt;</span>
+      <span class="kw">&lt;class</span> <span class="fn">name</span>=<span class="str">"tests.CartTest"</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/classes&gt;</span>
+  <span class="kw">&lt;/test&gt;</span>
+
+<span class="kw">&lt;/suite&gt;</span></pre>
+  </div>
+  <div class="lv lv-p"><div class="lv-dot"></div>Assert Methods Cheat Sheet</div>
+  <div class="card">
+    <pre><span class="kw">import</span> org.testng.Assert;
+
+Assert.<span class="fn">assertEquals</span>(actual, expected);          <span class="cmt">// exact match</span>
+Assert.<span class="fn">assertNotEquals</span>(actual, notExpected);     <span class="cmt">// not equal</span>
+Assert.<span class="fn">assertTrue</span>(condition, <span class="str">"msg if fail"</span>);    <span class="cmt">// must be true</span>
+Assert.<span class="fn">assertFalse</span>(condition, <span class="str">"msg if fail"</span>);   <span class="cmt">// must be false</span>
+Assert.<span class="fn">assertNotNull</span>(object);                    <span class="cmt">// not null</span>
+Assert.<span class="fn">assertNull</span>(object);                       <span class="cmt">// is null</span>
+Assert.<span class="fn">fail</span>(<span class="str">"Force fail with message"</span>);          <span class="cmt">// always fail</span>
+
+<span class="cmt">// Soft Assert — run ALL assertions even if one fails</span>
+<span class="kw">import</span> org.testng.asserts.SoftAssert;
+<span class="cls">SoftAssert</span> soft = <span class="kw">new</span> <span class="cls">SoftAssert</span>();
+soft.<span class="fn">assertEquals</span>(cartCount, <span class="str">"1"</span>);
+soft.<span class="fn">assertTrue</span>(successMsg.<span class="fn">isDisplayed</span>());
+soft.<span class="fn">assertAll</span>(); <span class="cmt">// MUST call this at end!</span></pre>
+  </div>
+  <div class="tip">Use SoftAssert when you want to verify multiple things on one page and see ALL failures at once — not just the first one. Perfect for checkout page verification.</div>
+</div>
+
+<script>
+function S(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  var s=document.getElementById(id);if(s)s.classList.add('on');
+  if(btn)btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function G(id){S(id,document.querySelector('.nb[onclick*="\''+id+'\'"]'));}
+</script>
